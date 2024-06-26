@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome please enter aadhar number</h1>
+    <label for="fname">Aadhar number:</label>
+    <input type="text" id="Anum" name="Anum"><br><br>
+    <input type="submit" value="Submit" onclick="ValidateAadhar()">
+
+
+</div>
+<script type="text/javascript">
+    function ValidateAadhar() {
+        var AdNumber = document.getElementById("Anum").value;
+        if (AdNumber.length != 12 || isNaN(AdNumber)) {
+            alert("Invalid Aadhar Number");
+            return;
+        }
+        $.ajax({
+            url: "@Url.Action("InputResult")",
+            type: "POST",
+            data: { "aadharnumber": AdNumber },
+            success: function (data) {
+                alert(data);
+            }
+        });
+
+    } 
+
+
+</script>
